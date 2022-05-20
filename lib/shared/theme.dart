@@ -34,5 +34,9 @@ TextStyle whiteTextStyle = GoogleFonts.poppins(
   color: whiteColor,
 );
 
-
-// ! MANDI DULU NANTI DILANJUT
+FontWeight bold = FontWeight.w700;
+FontWeight semiBold = FontWeight.w600;
+FontWeight regular = FontWeight.w400;
+FontWeight medium = FontWeight.w500;
+FontWeight light = FontWeight.w300;
+FontWeight extraLight = FontWeight.w200;
