@@ -1,8 +1,27 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../../shared/theme.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  bool isLoading = false;
+  void initState() {
+    getInit();
+    super.initState();
+  }
+
+  getInit() async {
+    isLoading = true;
+    Future.delayed(Duration(seconds: 5), () {
+      isLoading = false;
+      Navigator.pushReplacementNamed(context, '/get-started');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +48,14 @@ class SplashScreen extends StatelessWidget {
                   letterSpacing: 10.08,
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
+              isLoading
+                  ? CircularProgressIndicator(
+                      color: whiteColor,
+                    )
+                  : SizedBox(),
             ],
           ),
         ),

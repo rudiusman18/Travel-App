@@ -40,3 +40,6 @@ FontWeight regular = FontWeight.w400;
 FontWeight medium = FontWeight.w500;
 FontWeight light = FontWeight.w300;
 FontWeight extraLight = FontWeight.w200;
+
+double defaultMargin = 24.0;
+double defaultRadius = 17.0;
