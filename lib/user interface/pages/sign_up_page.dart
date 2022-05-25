@@ -113,6 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
               print(emailController.text);
               print(passwordController.text);
               print(hobbyController.text);
+              Navigator.pushNamed(context, '/bonus');
             },
             child: Text(
               'Get Started',

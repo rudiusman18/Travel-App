@@ -1,3 +1,4 @@
+import 'package:airplane_mobile/user%20interface/pages/bonus_page.dart';
 import 'package:airplane_mobile/user%20interface/pages/get_started_page.dart';
 import 'package:airplane_mobile/user%20interface/pages/sign_up_page.dart';
 import 'package:airplane_mobile/user%20interface/pages/splash_screen.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
           case '/sign-up':
             return PageTransition(
                 child: SignUpPage(), type: PageTransitionType.rightToLeft);
+          case '/bonus':
+            return PageTransition(
+                child: BonusPage(), type: PageTransitionType.rightToLeft);
         }
       },
       home: Scaffold(
