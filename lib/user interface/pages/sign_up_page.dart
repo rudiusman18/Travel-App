@@ -1,3 +1,4 @@
+import 'package:airplane_mobile/user%20interface/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import '../../shared/theme.dart';
 
@@ -94,39 +95,6 @@ class _SignUpPageState extends State<SignUpPage> {
       );
     }
 
-    Widget buttonSubmit() {
-      return Align(
-        child: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 30,
-          ),
-          width: double.infinity,
-          height: 55,
-          decoration: BoxDecoration(
-            color: primaryColor,
-            borderRadius: BorderRadius.circular(defaultRadius),
-          ),
-          child: TextButton(
-            onPressed: () {
-              print(fullNameController.text);
-              print(emailController.text);
-              print(passwordController.text);
-              print(hobbyController.text);
-              Navigator.pushNamed(context, '/bonus');
-            },
-            child: Text(
-              'Get Started',
-              style: whiteTextStyle.copyWith(
-                fontSize: 18,
-                fontWeight: medium,
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SafeArea(
@@ -170,7 +138,22 @@ class _SignUpPageState extends State<SignUpPage> {
                     controllerVariable: hobbyController,
                     focus: hobbyFocusNode,
                   ),
-                  buttonSubmit(),
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                      vertical: 30,
+                    ),
+                    child: CustomButton(
+                      title: 'Get Started',
+                      onPressed: () {
+                        print(fullNameController.text);
+                        print(emailController.text);
+                        print(passwordController.text);
+                        print(hobbyController.text);
+                        Navigator.pushNamed(context, '/bonus');
+                      },
+                      width: 287,
+                    ),
+                  ),
                 ],
               ),
             ),

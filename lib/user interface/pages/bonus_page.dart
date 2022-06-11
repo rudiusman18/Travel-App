@@ -1,4 +1,5 @@
 import 'package:airplane_mobile/shared/theme.dart';
+import 'package:airplane_mobile/user%20interface/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class BonusPage extends StatelessWidget {
@@ -139,40 +140,32 @@ class BonusPage extends StatelessWidget {
       );
     }
 
-    Widget buttonSubmit() {
-      return Container(
-        margin: EdgeInsets.only(
-          top: 50,
-        ),
-        height: 55,
-        width: 220,
-        child: TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-              backgroundColor: primaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(defaultRadius),
-              )),
-          child: Text(
-            'Start Fly Now',
-            style: whiteTextStyle.copyWith(
-              fontSize: 18,
-              fontWeight: medium,
+    return Scaffold(
+      backgroundColor: whiteColor,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                bonusCard(name: 'Kezie Anne', balance: '280,000,000'),
+                bonusContent(),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: 50,
+                  ),
+                  child: CustomButton(
+                    title: 'Start Fly Now',
+                    width: 220,
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/main-page');
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
-        ),
-      );
-    }
-
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            bonusCard(name: 'Kezie Anne', balance: '280,000,000'),
-            bonusContent(),
-            buttonSubmit(),
-          ],
         ),
       ),
     );

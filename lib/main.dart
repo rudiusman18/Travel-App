@@ -1,5 +1,6 @@
 import 'package:airplane_mobile/user%20interface/pages/bonus_page.dart';
 import 'package:airplane_mobile/user%20interface/pages/get_started_page.dart';
+import 'package:airplane_mobile/user%20interface/pages/main_page.dart';
 import 'package:airplane_mobile/user%20interface/pages/sign_up_page.dart';
 import 'package:airplane_mobile/user%20interface/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
           case '/bonus':
             return PageTransition(
                 child: BonusPage(), type: PageTransitionType.rightToLeft);
+          case '/main-page':
+            return PageTransition(
+                child: MainPage(), type: PageTransitionType.rightToLeft);
         }
       },
       home: Scaffold(
