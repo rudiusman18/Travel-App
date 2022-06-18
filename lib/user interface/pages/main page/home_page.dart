@@ -49,7 +49,13 @@ class HomePage extends StatelessWidget {
       );
     }
 
-    Widget popularDestinations({required int position}) {
+    Widget popularDestination({
+      required int position,
+      String? destinationName,
+      String? star,
+      String? location,
+      String? assets,
+    }) {
       return Container(
         margin: EdgeInsets.only(
           top: 30,
@@ -77,7 +83,7 @@ class HomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(18),
                 image: DecorationImage(
                   image: AssetImage(
-                    'assets/destination1.png',
+                    'assets/$assets',
                   ),
                 ),
               ),
@@ -104,7 +110,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '4.8',
+                      '$star',
                       style: titleTextStyle.copyWith(
                         fontWeight: medium,
                       ),
@@ -117,7 +123,7 @@ class HomePage extends StatelessWidget {
               height: 20,
             ),
             Text(
-              'Lake Ciliwung',
+              '$destinationName',
               style: titleTextStyle.copyWith(
                 fontWeight: medium,
                 fontSize: 18,
@@ -127,10 +133,91 @@ class HomePage extends StatelessWidget {
               height: 5,
             ),
             Text(
-              'Tangerang',
+              '$location',
               style: subtitleTextStyle.copyWith(
                 fontWeight: light,
               ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget newDestination({
+      String? imgUrl,
+      String? destinationName,
+      String? city,
+      String? star,
+    }) {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 16,
+        ),
+        padding: EdgeInsets.only(
+          top: 10,
+          left: 10,
+          right: 16,
+          bottom: 10,
+        ),
+        decoration: BoxDecoration(
+          color: whiteColor,
+          borderRadius: BorderRadius.circular(18),
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(18),
+              child: Image.asset(
+                'assets/$imgUrl',
+                width: 70,
+                height: 70,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(
+              width: 16,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '$destinationName',
+                    style: titleTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    '$city',
+                    style: subtitleTextStyle.copyWith(
+                      fontWeight: light,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(right: 1),
+                  child: Image.asset(
+                    'assets/starIcon.png',
+                    width: 21,
+                    height: 21,
+                  ),
+                ),
+                Text(
+                  '$star',
+                  style: titleTextStyle.copyWith(
+                    fontWeight: medium,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -145,11 +232,94 @@ class HomePage extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                popularDestinations(position: 0),
-                popularDestinations(position: 1),
-                popularDestinations(position: 2),
-                popularDestinations(position: 3),
-                popularDestinations(position: 4),
+                popularDestination(
+                  position: 0,
+                  assets: 'destination1.png',
+                  destinationName: 'Lake Ciliwung',
+                  location: 'Tangerang',
+                  star: '4.8',
+                ),
+                popularDestination(
+                  position: 1,
+                  assets: 'destination2.png',
+                  destinationName: 'White Houses',
+                  location: 'Spain',
+                  star: '4.7',
+                ),
+                popularDestination(
+                  position: 2,
+                  assets: 'destination3.png',
+                  destinationName: 'Hill Heyo',
+                  location: 'Monaco',
+                  star: '4.8',
+                ),
+                popularDestination(
+                  position: 3,
+                  assets: 'destination4.png',
+                  destinationName: 'Menarra',
+                  location: 'Japan',
+                  star: '5.0',
+                ),
+                popularDestination(
+                  position: 4,
+                  assets: 'destination5.png',
+                  destinationName: 'Payung Teduh',
+                  location: 'Singapore',
+                  star: '4.8',
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              left: defaultMargin,
+              right: defaultMargin,
+              top: 30,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'New This Year',
+                  style: titleTextStyle.copyWith(
+                    fontWeight: semiBold,
+                    fontSize: 18,
+                  ),
+                ),
+                // NOTE: new destionation card will be here
+                newDestination(
+                  imgUrl: 'destination6.png',
+                  destinationName: 'Danau Beratan',
+                  city: 'Singaraja',
+                  star: '4.5',
+                ),
+                newDestination(
+                  imgUrl: 'destination7.png',
+                  destinationName: 'Sydney Opera',
+                  city: 'Australia',
+                  star: '4.7',
+                ),
+                newDestination(
+                  imgUrl: 'destination8.png',
+                  destinationName: 'Roma',
+                  city: 'Italy',
+                  star: '4.8',
+                ),
+                newDestination(
+                  imgUrl: 'destination9.png',
+                  destinationName: 'Payung Teduh',
+                  city: 'Singapore',
+                  star: '4.5',
+                ),
+                newDestination(
+                  imgUrl: 'destination10.png',
+                  destinationName: 'Hill Hey',
+                  city: 'Monaco',
+                  star: '4.7',
+                ),
+                SizedBox(
+                  height: 150,
+                ),
               ],
             ),
           ),
