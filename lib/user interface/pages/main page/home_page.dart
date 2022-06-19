@@ -1,4 +1,6 @@
+import 'package:airplane_mobile/user%20interface/pages/main%20page/detail_destination_page.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import '../../../shared/theme.dart';
 
 class HomePage extends StatelessWidget {
@@ -49,6 +51,7 @@ class HomePage extends StatelessWidget {
       );
     }
 
+// NOTE: popular destination (up section)
     Widget popularDestination({
       required int position,
       String? destinationName,
@@ -56,170 +59,201 @@ class HomePage extends StatelessWidget {
       String? location,
       String? assets,
     }) {
-      return Container(
-        margin: EdgeInsets.only(
-          top: 30,
-          left: position == 0 ? defaultMargin : 0,
-          right: defaultMargin,
-        ),
-        padding: EdgeInsets.only(
-          top: 10,
-          left: 10,
-          right: 10,
-          bottom: 20,
-        ),
-        width: 200,
-        decoration: BoxDecoration(
-          color: whiteColor,
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              alignment: Alignment.topRight,
-              height: 220,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                image: DecorationImage(
-                  image: AssetImage(
-                    'assets/$assets',
-                  ),
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            PageTransition(
+                child: DetailDestinationPage(
+                  city: location,
+                  destinationName: destinationName,
+                  imgUrl: assets,
+                  star: star,
                 ),
-              ),
-              child: Container(
-                width: 54.5,
-                height: 30,
+                type: PageTransitionType.rightToLeft),
+          );
+        },
+        child: Container(
+          margin: EdgeInsets.only(
+            top: 30,
+            left: position == 0 ? defaultMargin : 0,
+            right: defaultMargin,
+          ),
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: 20,
+          ),
+          width: 200,
+          decoration: BoxDecoration(
+            color: whiteColor,
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                alignment: Alignment.topRight,
+                height: 220,
                 decoration: BoxDecoration(
-                  color: whiteColor,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(
-                      18,
+                  borderRadius: BorderRadius.circular(18),
+                  image: DecorationImage(
+                    image: AssetImage(
+                      'assets/$assets',
                     ),
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(right: 1),
-                      child: Image.asset(
-                        'assets/starIcon.png',
-                        width: 21,
-                        height: 21,
+                child: Container(
+                  width: 54.5,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: whiteColor,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(
+                        18,
                       ),
                     ),
-                    Text(
-                      '$star',
-                      style: titleTextStyle.copyWith(
-                        fontWeight: medium,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(right: 1),
+                        child: Image.asset(
+                          'assets/starIcon.png',
+                          width: 21,
+                          height: 21,
+                        ),
                       ),
-                    ),
-                  ],
+                      Text(
+                        '$star',
+                        style: titleTextStyle.copyWith(
+                          fontWeight: medium,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              '$destinationName',
-              style: titleTextStyle.copyWith(
-                fontWeight: medium,
-                fontSize: 18,
+              SizedBox(
+                height: 20,
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              '$location',
-              style: subtitleTextStyle.copyWith(
-                fontWeight: light,
+              Text(
+                '$destinationName',
+                style: titleTextStyle.copyWith(
+                  fontWeight: medium,
+                  fontSize: 18,
+                ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                '$location',
+                style: subtitleTextStyle.copyWith(
+                  fontWeight: light,
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }
 
+// NOTE: new destination (below section)
     Widget newDestination({
       String? imgUrl,
       String? destinationName,
       String? city,
       String? star,
     }) {
-      return Container(
-        margin: EdgeInsets.only(
-          top: 16,
-        ),
-        padding: EdgeInsets.only(
-          top: 10,
-          left: 10,
-          right: 16,
-          bottom: 10,
-        ),
-        decoration: BoxDecoration(
-          color: whiteColor,
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(18),
-              child: Image.asset(
-                'assets/$imgUrl',
-                width: 70,
-                height: 70,
-                fit: BoxFit.cover,
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            PageTransition(
+                child: DetailDestinationPage(
+                  city: city,
+                  destinationName: destinationName,
+                  imgUrl: imgUrl,
+                  star: star,
+                ),
+                type: PageTransitionType.rightToLeft),
+          );
+        },
+        child: Container(
+          margin: EdgeInsets.only(
+            top: 16,
+          ),
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 16,
+            bottom: 10,
+          ),
+          decoration: BoxDecoration(
+            color: whiteColor,
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(18),
+                child: Image.asset(
+                  'assets/$imgUrl',
+                  width: 70,
+                  height: 70,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            SizedBox(
-              width: 16,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              SizedBox(
+                width: 16,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '$destinationName',
+                      style: titleTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: medium,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      '$city',
+                      style: subtitleTextStyle.copyWith(
+                        fontWeight: light,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    '$destinationName',
-                    style: titleTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
+                  Container(
+                    margin: EdgeInsets.only(right: 1),
+                    child: Image.asset(
+                      'assets/starIcon.png',
+                      width: 21,
+                      height: 21,
                     ),
                   ),
-                  SizedBox(
-                    height: 5,
-                  ),
                   Text(
-                    '$city',
-                    style: subtitleTextStyle.copyWith(
-                      fontWeight: light,
+                    '$star',
+                    style: titleTextStyle.copyWith(
+                      fontWeight: medium,
                     ),
                   ),
                 ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(right: 1),
-                  child: Image.asset(
-                    'assets/starIcon.png',
-                    width: 21,
-                    height: 21,
-                  ),
-                ),
-                Text(
-                  '$star',
-                  style: titleTextStyle.copyWith(
-                    fontWeight: medium,
-                  ),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       );
     }

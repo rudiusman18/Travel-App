@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../shared/theme.dart';
 
 class SettingPage extends StatelessWidget {
   @override
