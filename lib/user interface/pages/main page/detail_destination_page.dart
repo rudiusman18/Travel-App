@@ -1,3 +1,4 @@
+import 'package:airplane_mobile/user%20interface/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import '../../../shared/theme.dart';
 
@@ -99,8 +100,11 @@ class DetailDestinationPage extends StatelessWidget {
 
     interestItem({required String interest}) {
       return Container(
-        width: 116,
+        constraints: BoxConstraints(
+          minWidth: 116,
+        ),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
               'assets/circle_check_icon.png',
@@ -110,9 +114,11 @@ class DetailDestinationPage extends StatelessWidget {
             SizedBox(
               width: 6,
             ),
-            Text(
-              '$interest',
-              style: titleTextStyle,
+            Flexible(
+              child: Text(
+                '$interest',
+                style: titleTextStyle,
+              ),
             )
           ],
         ),
@@ -155,7 +161,9 @@ class DetailDestinationPage extends StatelessWidget {
                   ),
                   Text(
                     'Berada di jalur jalan provinsi yang menghubungkan Denpasar Singaraja serta letaknya yang dekat dengan Kebun Raya Eka Karya menjadikan tempat Bali.',
-                    style: titleTextStyle,
+                    style: titleTextStyle.copyWith(
+                      height: 2,
+                    ),
                   ),
                   // ?? PHOTOS SECTION
                   SizedBox(
@@ -270,27 +278,10 @@ class DetailDestinationPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              CustomButton(
+                title: 'Book Now',
+                onPressed: () {},
                 width: 170,
-                height: 55,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(
-                    defaultRadius,
-                  ),
-                  child: TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      backgroundColor: primaryColor,
-                    ),
-                    child: Text(
-                      'Book Now',
-                      style: whiteTextStyle.copyWith(
-                        fontSize: 18,
-                        fontWeight: medium,
-                      ),
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
