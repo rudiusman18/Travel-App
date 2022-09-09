@@ -1,6 +1,6 @@
 # airplane_mobile
 
-A new Flutter project.
+ini adalah aplikasi travel menggunakan pesawat dengan fitur pemesanan, pemilihan tempat duduk, dan sebagainya menggunakan BLoC State Management. Sistem ini dikembangkan untuk menyelesaikan online course yang ada di BuildWithAngga.com
 
 ## Getting Started
 
