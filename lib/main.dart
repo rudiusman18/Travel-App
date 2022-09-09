@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
             return PageTransition(
                 child: MainPage(), type: PageTransitionType.rightToLeft);
         }
+        return null;
       },
       home: Scaffold(
         body: SplashScreen(),
