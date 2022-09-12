@@ -1,3 +1,4 @@
+import 'package:airplane_mobile/user%20interface/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import '../../../shared/theme.dart';
 
@@ -63,6 +64,7 @@ class ChooseSeatPage extends StatelessWidget {
       );
     }
 
+// NOTE: seat item content
     Widget seatItem({
       required String seat,
       required String seatNumber,
@@ -75,19 +77,65 @@ class ChooseSeatPage extends StatelessWidget {
           ),
           child: Center(
             child: seat == ''
-                ? SizedBox()
+                ? Text(
+                    seatNumber,
+                    style: subtitleTextStyle.copyWith(
+                      fontSize: 16,
+                    ),
+                  )
                 : Container(
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: status == 1 ? primaryColor : Color(0xffE0D9FF),
+                      border: Border.all(
+                          width: 2,
+                          color:
+                              status == 0 ? primaryColor : Colors.transparent),
                       borderRadius: BorderRadius.circular(
                         15,
                       ),
                     ),
+                    child: Center(
+                      child: status == 1
+                          ? Text(
+                              'YOU',
+                              style: whiteTextStyle.copyWith(
+                                fontWeight: semiBold,
+                              ),
+                            )
+                          : SizedBox(),
+                    ),
                   ),
           ),
         ),
+      );
+    }
+
+    Widget seatInformation({
+      required String name,
+      required String value,
+      Color? valueColor,
+      required FontWeight fontWeight,
+    }) {
+      return Row(
+        children: [
+          Expanded(
+              child: Text(
+            name,
+            style: subtitleTextStyle.copyWith(
+              fontWeight: light,
+            ),
+          )),
+          Text(
+            value,
+            style: titleTextStyle.copyWith(
+              fontWeight: fontWeight,
+              fontSize: 16,
+              color: valueColor,
+            ),
+          ),
+        ],
       );
     }
 
@@ -121,19 +169,47 @@ class ChooseSeatPage extends StatelessWidget {
                   ),
               ],
             ),
-            // NOTE: seat 1
-            Row(
-              children: [
-                for (int i = 0; i < seatPosition.length; i++)
-                  seatItem(seat: seatPosition[i], seatNumber: '1'),
-              ],
-            )
+            // NOTE: seat
+            for (int kursi = 1; kursi <= 5; kursi++)
+              Row(
+                children: [
+                  for (int i = 0; i < seatPosition.length; i++)
+                    seatItem(
+                      seat: seatPosition[i],
+                      seatNumber: kursi.toString(),
+                    ),
+                ],
+              ),
+            SizedBox(
+              height: 30,
+            ),
+            // NOTE: seatInformation
+            seatInformation(
+              name: 'Your Seat',
+              value: 'A3, B3',
+              fontWeight: medium,
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            seatInformation(
+              name: 'Total',
+              value: 'IDR 540.000.000',
+              valueColor: primaryColor,
+              fontWeight: semiBold,
+            ),
           ],
         ),
       );
     }
 
     return Scaffold(
+      bottomNavigationBar: Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 24,
+            vertical: 10,
+          ),
+          child: CustomButton(title: 'Continue to Checkout', onPressed: () {})),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
