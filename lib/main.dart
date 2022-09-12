@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
         return null;
       },
       home: Scaffold(
+        
         body: SplashScreen(),
       ),
     );
