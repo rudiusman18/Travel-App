@@ -1,5 +1,7 @@
+import 'package:airplane_mobile/user%20interface/pages/main%20page/choose_seat_page.dart';
 import 'package:airplane_mobile/user%20interface/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import '../../../shared/theme.dart';
 
 class DetailDestinationPage extends StatelessWidget {
@@ -280,7 +282,15 @@ class DetailDestinationPage extends StatelessWidget {
               ),
               CustomButton(
                 title: 'Book Now',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: ChooseSeatPage(),
+                    ),
+                  );
+                },
                 width: 170,
               ),
             ],
