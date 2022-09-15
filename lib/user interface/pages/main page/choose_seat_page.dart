@@ -1,5 +1,7 @@
+import 'package:airplane_mobile/user%20interface/pages/main%20page/checkout_page.dart';
 import 'package:airplane_mobile/user%20interface/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import '../../../shared/theme.dart';
 
 class ChooseSeatPage extends StatelessWidget {
@@ -205,19 +207,33 @@ class ChooseSeatPage extends StatelessWidget {
 
     return Scaffold(
       bottomNavigationBar: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: 24,
-            vertical: 10,
-          ),
-          child: CustomButton(title: 'Continue to Checkout', onPressed: () {})),
+        margin: EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 10,
+        ),
+        child: CustomButton(
+          title: 'Continue to Checkout',
+          onPressed: () {
+            Navigator.push(
+              context,
+              PageTransition(
+                child: CheckoutPage(),
+                type: PageTransitionType.rightToLeft,
+              ),
+            );
+          },
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: 30,
             horizontal: 24,
           ),
           child: ListView(
             children: [
+              SizedBox(
+                height: 30,
+              ),
               Text(
                 'Select Your\nFavourite Seats',
                 style: titleTextStyle.copyWith(
