@@ -1,4 +1,5 @@
 import 'package:airplane_mobile/shared/theme.dart';
+import 'package:airplane_mobile/user%20interface/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class CheckoutPage extends StatelessWidget {
@@ -35,14 +36,14 @@ class CheckoutPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Lake Ciliwung',
+                  destinationName,
                   style: titleTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: medium,
                   ),
                 ),
                 Text(
-                  'Tangerang',
+                  destinationCity,
                   style: subtitleTextStyle.copyWith(
                     fontWeight: light,
                   ),
@@ -74,8 +75,7 @@ class CheckoutPage extends StatelessWidget {
     }) {
       return Container(
         margin: EdgeInsets.only(
-          top: 10,
-          bottom: 30,
+          bottom: 16,
         ),
         child: Row(
           children: [
@@ -87,8 +87,143 @@ class CheckoutPage extends StatelessWidget {
             SizedBox(
               width: 6,
             ),
-            Expanded(child: Text(name)),
-            Text(value),
+            Text(
+              name,
+              style: titleTextStyle,
+            ),
+            Spacer(),
+            Expanded(
+              child: Text(
+                value,
+                style: titleTextStyle.copyWith(
+                  fontWeight: semiBold,
+                  color: value == 'YES'
+                      ? greenColor
+                      : value == 'NO'
+                          ? redColor
+                          : name == 'Grand Total'
+                              ? primaryColor
+                              : titleColor,
+                ),
+                textAlign: TextAlign.right,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget paymentDetail({required String totalAmount}) {
+      return Container(
+        margin: EdgeInsets.symmetric(
+          vertical: 30,
+        ),
+        padding: EdgeInsets.symmetric(
+          vertical: 30,
+          horizontal: 20,
+        ),
+        decoration: BoxDecoration(
+          color: whiteColor,
+          borderRadius: BorderRadius.circular(
+            18,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Payment Details',
+              style: titleTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semiBold,
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Row(
+              children: [
+                // NOTE: Wallet Button
+                Container(
+                  width: 100,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      18,
+                    ),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/wallet_button.png',
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: SizedBox(
+                    width: 100,
+                    height: 70,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            18,
+                          ),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: Image.asset(
+                              'assets/airplane_logo.png',
+                              width: 24,
+                              height: 24,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text(
+                            'Pay',
+                            style: whiteTextStyle.copyWith(
+                              fontSize: 16,
+                              fontWeight: medium,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 16,
+                ),
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        totalAmount,
+                        style: titleTextStyle.copyWith(
+                          fontSize: 18,
+                          fontWeight: medium,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Current Balance',
+                        style: subtitleTextStyle.copyWith(
+                          fontWeight: light,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       );
@@ -102,62 +237,60 @@ class CheckoutPage extends StatelessWidget {
         child: ListView(
           children: [
             SizedBox(
-              height: 56,
+              height: 50,
             ),
-            Container(
-              width: 327,
-              child: Column(
-                children: [
-                  Center(
-                    child: Image.asset(
-                      'assets/checkout_icon.png',
-                      width: 300,
+            Column(
+              children: [
+                Center(
+                  child: Image.asset(
+                    'assets/checkout_icon.png',
+                    width: double.infinity,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'CGK',
+                          style: titleTextStyle.copyWith(
+                            fontSize: 24,
+                            fontWeight: semiBold,
+                          ),
+                        ),
+                        Text(
+                          'Tangerang',
+                          style: subtitleTextStyle.copyWith(
+                            fontWeight: light,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'CGK',
-                            style: titleTextStyle.copyWith(
-                              fontSize: 24,
-                              fontWeight: semiBold,
-                            ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          'TLC',
+                          style: titleTextStyle.copyWith(
+                            fontSize: 24,
+                            fontWeight: semiBold,
                           ),
-                          Text(
-                            'Tangerang',
-                            style: subtitleTextStyle.copyWith(
-                              fontWeight: light,
-                            ),
+                        ),
+                        Text(
+                          'Ciliwung',
+                          style: subtitleTextStyle.copyWith(
+                            fontWeight: light,
                           ),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'TLC',
-                            style: titleTextStyle.copyWith(
-                              fontSize: 24,
-                              fontWeight: semiBold,
-                            ),
-                          ),
-                          Text(
-                            'Ciliwung',
-                            style: subtitleTextStyle.copyWith(
-                              fontWeight: light,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
+            // NOTE: Information
             Container(
               margin: EdgeInsets.only(
                 top: 30,
@@ -192,12 +325,63 @@ class CheckoutPage extends StatelessWidget {
                       fontSize: 16,
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   bookingDetailItem(
                     name: 'Traveler',
-                    value: '2 Item',
+                    value: '2 Person',
+                  ),
+                  bookingDetailItem(
+                    name: 'Seat',
+                    value: 'A3, B3',
+                  ),
+                  bookingDetailItem(
+                    name: 'Insurance',
+                    value: 'YES',
+                  ),
+                  bookingDetailItem(
+                    name: 'Refundable',
+                    value: 'NO',
+                  ),
+                  bookingDetailItem(
+                    name: 'VAT',
+                    value: '45%',
+                  ),
+                  bookingDetailItem(
+                    name: 'Price',
+                    value: 'IDR 8,500,690',
+                  ),
+                  bookingDetailItem(
+                    name: 'Grand Total',
+                    value: 'IDR 12,000,000',
                   ),
                 ],
               ),
+            ),
+            paymentDetail(
+              totalAmount: 'IDR 8,500,000',
+            ),
+
+            CustomButton(
+              title: 'Pay Now',
+              onPressed: () {},
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Center(
+              child: Text(
+                'Terms and Conditions',
+                style: subtitleTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: light,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
             ),
           ],
         ),

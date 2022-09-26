@@ -9,6 +9,7 @@ Color subtitleColor = Color(0xff9698A9);
 Color whiteColor = Color(0xffFFFFFF);
 Color greenColor = Color(0xff0EC3AE);
 Color redColor = Color(0xffEB70A5);
+Color blackColor = Colors.black;
 
 TextStyle primaryTextStyle = GoogleFonts.poppins(
   color: primaryColor,
@@ -32,6 +33,10 @@ TextStyle subtitleTextStyle = GoogleFonts.poppins(
 
 TextStyle whiteTextStyle = GoogleFonts.poppins(
   color: whiteColor,
+);
+
+TextStyle blackTextStyle = GoogleFonts.poppins(
+  color: blackColor,
 );
 
 FontWeight bold = FontWeight.w700;
