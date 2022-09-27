@@ -1,4 +1,4 @@
-import 'package:airplane_mobile/user%20interface/pages/main%20page/detail_destination_page.dart';
+import 'package:airplane_mobile/user%20interface/pages/detail_destination_page.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../../shared/theme.dart';
