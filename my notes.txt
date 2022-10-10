@@ -1,0 +1,38 @@
+Pada kelas ini digunakan library bernama equatable. Library ini berfungsi untuk mempermudah proses perbandingan dua class. Sehingga tidak perlu melakukan perbandingan tiap variabel didalamnya.
+
+Contoh: 
+
+class LaptopGiftClass{
+    String processor;
+    int memory;
+    int storage;
+    const LaptopGiftClass(this.processor, this.memory, this.storage);
+}
+
+# Perbandingan dengan cara manual
+class LaptopGiftClass {
+    @override
+    bool operator ==(Object myBrotherLaptop) =>
+      identical(this, myBrotherLaptop) ||
+      myBrotherLaptop is LaptopGiftClass &&
+      runtimeType == myBrotherLaptop.runtimeType &&
+      processor == myBrotherLaptop.processor &&
+      memory == myBrotherLaptop.memory &&
+      storage == myBrotherLaptop.storage;
+  
+    @override
+    int get hashCode => processor.hashCode ^ memory.hashCode ^ storage.hashCode;
+  }
+
+
+
+# Perbandingan menggunakan library equatable
+LaptopGiftClass myLaptop1 = LaptopGiftClass('i5', 16, 256);
+LaptopGiftClass myBrotherLaptop1 = LaptopGiftClass('i5', 32, 512);
+
+print(myLaptop1 == myBrotherLaptop1);
+
+LaptopGiftClass myLaptop2 = LaptopGiftClass('i5', 16, 256);
+LaptopGiftClass myBrotherLaptop2 = LaptopGiftClass('i5', 16, 256);
+
+print(myLaptop2 == myBrotherLaptop2);
