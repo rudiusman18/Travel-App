@@ -1,4 +1,4 @@
-package com.example.airplane_mobile
+package com.rudi.airplane_mobile
 
 import io.flutter.embedding.android.FlutterActivity
 

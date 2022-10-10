@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "703213808210",
+    "project_id": "airplane-ae7b5",
+    "storage_bucket": "airplane-ae7b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703213808210:android:bfcafb7966d63727104d8b",
+        "android_client_info": {
+          "package_name": "com.rudi.airplane_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703213808210-4qa1etkkfohvaei79uj2tq6tn1a8hs5l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvVbBeh3RWQMszBk2X_xbiraDMt7S2NCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703213808210-4qa1etkkfohvaei79uj2tq6tn1a8hs5l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

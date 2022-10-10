@@ -50,7 +50,10 @@ class SuccessBookPage extends StatelessWidget {
                       height: 55,
                       child: CustomButton(
                         title: 'My Bookings',
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, '/main-page', (route) => false);
+                        },
                       ),
                     ),
                   ],

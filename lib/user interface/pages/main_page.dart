@@ -1,8 +1,10 @@
+import 'package:airplane_mobile/cubit/page_cubit.dart';
 import 'package:airplane_mobile/user%20interface/pages/main%20page/book_page.dart';
 import 'package:airplane_mobile/user%20interface/pages/main%20page/home_page.dart';
 import 'package:airplane_mobile/user%20interface/pages/main%20page/setting_page.dart';
 import 'package:airplane_mobile/user%20interface/pages/main%20page/wallet_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../shared/theme.dart';
 
 class MainPage extends StatefulWidget {
@@ -11,15 +13,14 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     Widget floatingNavbarItem(int position, String assetName) {
       return GestureDetector(
         onTap: () {
-          setState(() {
-            currentIndex = position;
-          });
+          // NOTE: Context.read memiliki yang hampir sama dengan setstate yaitu mengubah nilai variabel. baris kode dibawah memiliki fungsi untuk mengubah nilai emit dengan nilai position.
+          context.read<PageCubit>().newPage(position);
+          print(position);
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -29,9 +30,11 @@ class _MainPageState extends State<MainPage> {
               'assets/menu/$assetName',
               width: 24,
               height: 24,
-              color: currentIndex == position ? primaryColor : backgroundColor,
+              color: context.read<PageCubit>().state == position
+                  ? primaryColor
+                  : backgroundColor,
             ),
-            currentIndex == position
+            context.read<PageCubit>().state == position
                 ? Container(
                     height: 2,
                     width: 24,
@@ -76,7 +79,7 @@ class _MainPageState extends State<MainPage> {
       );
     }
 
-    Widget body() {
+    Widget body({required int currentIndex}) {
       switch (currentIndex) {
         case 0:
           return HomePage();
@@ -92,16 +95,21 @@ class _MainPageState extends State<MainPage> {
       }
     }
 
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            body(),
-            // NOTE: ini adalah bottomNavbar
-            customFloatingNavbar(),
-          ],
-        ),
-      ),
+    return BlocBuilder<PageCubit, int>(
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: Stack(
+              children: [
+                // NOTE: Mengambil value yang didapatkan melalui emit pada PageCubit
+                body(currentIndex: state),
+                // NOTE: ini adalah bottomNavbar
+                customFloatingNavbar(),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

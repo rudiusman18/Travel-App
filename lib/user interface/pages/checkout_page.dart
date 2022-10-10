@@ -368,13 +368,13 @@ class CheckoutPage extends StatelessWidget {
             CustomButton(
               title: 'Pay Now',
               onPressed: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    child: SuccessBookPage(),
-                    type: PageTransitionType.rightToLeft,
-                  ),
-                );
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    PageTransition(
+                      child: SuccessBookPage(),
+                      type: PageTransitionType.rightToLeft,
+                    ),
+                    (route) => false);
               },
             ),
             SizedBox(
